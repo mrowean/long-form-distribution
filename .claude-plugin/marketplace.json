@@ -1,0 +1,16 @@
+{
+  "name": "long-form-distribution",
+  "owner": {
+    "name": "Matthew Rowean"
+  },
+  "metadata": {
+    "description": "One Claude Code plugin: turn a published long-form piece into social posts built from your own sentences, with a local posting dashboard."
+  },
+  "plugins": [
+    {
+      "name": "long-form-distribution",
+      "source": "./",
+      "description": "Turn a published newsletter issue or essay into social posts built from your own sentences, and track which ones went live on a local dashboard."
+    }
+  ]
+}

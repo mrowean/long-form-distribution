@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.DS_Store
+# your own tracker data never belongs in the repo
+distribution-tracker/
+log.jsonl
+voice.md

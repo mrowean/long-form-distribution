@@ -1,4 +1,4 @@
-# long-form-distribution
+![long-form-distribution: one long piece in, a posting plan out](docs/banner.png)
 
 You wrote the long piece. It went out once, to your subscribers, and then it stopped working.
 

@@ -10,6 +10,7 @@ Standard library only. Binds to 127.0.0.1, so nothing leaves your machine.
 Your data lives in ~/distribution-tracker (set LFD_HOME to move it):
 
     issues/<slug>.json   one file per issue, written by the /distribute skill
+    covers/<file>        optional cover images, referenced as "cover": "covers/<file>"
     log.jsonl            one row per tick, skip or posted link; append-only
 
 The page reads /api/state and writes through three routes:
@@ -68,7 +69,8 @@ class Store:
                 continue
             d.setdefault("slug", p.stem)
             out.append(d)
-        out.sort(key=lambda d: d.get("published") or "", reverse=True)
+        # newest first; an issue with no published date yet is the one being worked on
+        out.sort(key=lambda d: d.get("published") or "9999", reverse=True)
         return out
 
     def log(self):
@@ -143,7 +145,7 @@ def make_handler(store):
         def send(self, code, body, ctype="application/json"):
             data = body if isinstance(body, bytes) else body.encode("utf-8")
             self.send_response(code)
-            self.send_header("Content-Type", ctype + "; charset=utf-8")
+            self.send_header("Content-Type", ctype if ctype.startswith("image/") else ctype + "; charset=utf-8")
             self.send_header("Content-Length", str(len(data)))
             self.send_header("Cache-Control", "no-store")
             self.end_headers()
@@ -170,6 +172,14 @@ def make_handler(store):
             if path == "/api/state":
                 return self.js(200, {"ok": True, "demo": store.demo, "home": str(store.root),
                                      "issues": store.issues(), "log": store.log()})
+            if path.startswith("/covers/"):
+                name = path[len("/covers/"):]
+                kind = {"jpg": "image/jpeg", "jpeg": "image/jpeg", "png": "image/png",
+                        "webp": "image/webp", "gif": "image/gif"}.get(name.rsplit(".", 1)[-1].lower())
+                f = store.root / "covers" / name
+                if kind and "/" not in name and not name.startswith(".") and f.is_file():
+                    return self.send(200, f.read_bytes(), kind)
+                return self.js(404, {"ok": False, "error": "not found"})
             if path == "/api/export.csv":
                 body = export_csv(store)
                 self.send_response(200)

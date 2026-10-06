@@ -90,7 +90,7 @@ Write one JSON file to `~/distribution-tracker/issues/<slug>.json` (or `$LFD_HOM
   "url": "https://…the published URL…",
   "published": "YYYY-MM-DD",
   "series": "My Newsletter",
-  "cover": "https://…cover image URL, or empty…",
+  "cover": "https://…cover image URL, covers/<file>.jpg, or empty…",
   "sections": [{"id": "s1", "title": "…"}],
   "items": [
     {"id": "s1-li", "section": "s1", "platform": "linkedin", "format": "post",

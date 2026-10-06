@@ -44,7 +44,7 @@ To open the dashboard later without distributing anything new:
 
 ## Try it first
 
-You can see the dashboard with a sample issue before you install anything:
+You can see the dashboard with three sample issues before you install anything:
 
 ```bash
 git clone https://github.com/mrowean/long-form-distribution
@@ -54,7 +54,7 @@ git clone https://github.com/mrowean/long-form-distribution
 python3 long-form-distribution/skills/distribute/dashboard/serve.py --demo
 ```
 
-Open http://127.0.0.1:8799. The sample is a real issue: SHORTCUTS #06, the one where I wrote about this tool. Every post in it is cut from that issue's own sentences. In demo mode nothing is saved. You can also open `skills/distribute/dashboard/index.html` straight from disk. It shows the same sample, and your ticks stay in that browser.
+Open http://127.0.0.1:8799. The samples are real issues: SHORTCUTS #04, #05 and #06, the one where I wrote about this tool. Every post in them is cut from that issue's own sentences. In demo mode nothing is saved. You can also open `skills/distribute/dashboard/index.html` straight from disk. It shows the same samples, and your ticks stay in that browser.
 
 To see the quote check on the same sample:
 
@@ -73,6 +73,7 @@ Everything stays on your computer. The server only listens on 127.0.0.1 and only
   issues/<slug>.json   one per issue: its sections and the drafted posts
   sources/<slug>.txt   the piece's text, which every post is checked against
   log.jsonl            every tick, skip and posted link, appended in order
+  covers/<file>        optional: cover images, if you'd rather not link to the web
   voice.md             optional: your own best posts, for matching your social voice
 ```
 

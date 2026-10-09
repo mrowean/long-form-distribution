@@ -34,7 +34,7 @@ Or, inside a Claude Code session:
 /long-form-distribution:distribute https://yourname.substack.com/p/your-latest-issue
 ```
 
-Claude reads the piece and shows you its sections in a table, then waits while you pick which ones to post and where. Then it writes the posts, saves the issue and starts the dashboard at `http://127.0.0.1:8799`.
+Claude reads the piece and shows you its sections in a table, then waits while you pick which ones to post and where. Then it writes the posts, saves the issue and starts the dashboard at `127.0.0.1:8799`.
 
 To open the dashboard later without distributing anything new:
 
@@ -54,7 +54,7 @@ git clone https://github.com/mrowean/long-form-distribution
 python3 long-form-distribution/skills/distribute/dashboard/serve.py --demo
 ```
 
-Open `http://127.0.0.1:8799`. The samples are real issues: SHORTCUTS #04, #05 and #06, the one where I wrote about this tool. Every post in them is cut from that issue's own sentences. In demo mode nothing is saved. You can also open `skills/distribute/dashboard/index.html` straight from disk. It shows the same samples, and your ticks stay in that browser.
+Open `127.0.0.1:8799`. The samples are real issues: SHORTCUTS #04, #05 and #06, the one where I wrote about this tool. Every post in them is cut from that issue's own sentences. In demo mode nothing is saved. You can also open `skills/distribute/dashboard/index.html` straight from disk. It shows the same samples, and your ticks stay in that browser.
 
 To see the quote check on the same sample:
 

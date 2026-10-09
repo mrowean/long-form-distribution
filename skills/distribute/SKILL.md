@@ -10,16 +10,28 @@ One published piece → a set of posts for LinkedIn, X, Substack Notes (and Thre
 
 Everything stays on the user's machine. The dashboard is a small Python server (standard library only) bound to 127.0.0.1. Issue files and the posting log live in `~/distribution-tracker/` unless `LFD_HOME` says otherwise.
 
-Arguments: `$ARGUMENTS`
+Arguments: `$ARGUMENTS` (if your agent doesn't fill this in, use the URL or word the user gave).
+
+`${CLAUDE_SKILL_DIR}` below means the folder this SKILL.md is in. If your agent doesn't set it, use that folder's absolute path.
 
 - If the argument is `dashboard` (or the user only wants to see their list), skip to **Step 6**.
 - If there is no URL, ask for the published link. Don't work from a draft that isn't live: the posts link back to it.
+- The user can also give the text itself, pasted or as a file path (`.md`, `.txt`, `.html`), along with the published URL. Read that instead of fetching, and use the URL only for the links.
 
 ## Step 1 — Read the piece
 
-Fetch the URL with WebFetch and ask for the full article text: the title, the publish date, the cover image URL if there is one, and every section heading with the body under it, verbatim. Ask it to leave out navigation, subscribe boxes, footers and comments.
+Fetch the URL with your web-fetch tool (WebFetch in Claude Code) and ask for the full article text: the title, the publish date, the cover image URL if there is one, and every section heading with the body under it, verbatim. Ask it to leave out navigation, subscribe boxes, footers and comments.
 
-If the fetch comes back truncated or paywalled, say so and ask the user to paste the text. Never fill in a gap from memory or a guess about what the piece says.
+**If the piece is paywalled or cut short.** Signs include text that ends mid-piece, a "Keep reading with a free trial" or "This post is for paid subscribers" box, or sections the intro promises that never appear. Tell the user the last section you received, then offer whichever of these routes you can use:
+
+- **Read it in their signed-in browser.** If you have a browser tool connected to the user's own browser (for example Claude in Chrome), ask first: "Can I open the post in your browser, where you're signed in?" On a yes, open the post URL, read the full text from the page and close the tab. Don't click anything except to expand the text, change no settings, and don't copy cookies or session data.
+- **Paste it from their editor.** Open the post in the platform's editor, select all, copy, and paste it into the chat.
+- **Give a file path.** Save the post as `.md`, `.txt` or `.html` and give you the path.
+- **Use the platform's export.** Substack: Settings → Exports gives a zip with every post as HTML, paid posts included.
+
+Only use text the author can already see as themselves. Never try to get past the paywall another way: no cached copies, archive sites, reader-mode tricks or someone else's login. If the user isn't the author, write posts from the free portion only and say they cover only that.
+
+Never fill in a gap from memory or a guess about what the piece says.
 
 Save the text verbatim to `~/distribution-tracker/sources/<slug>.txt` (or `$LFD_HOME/sources/`), with the slug made as in **Step 5**. Step 4 checks every post against this file.
 

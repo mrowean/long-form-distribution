@@ -2,7 +2,7 @@
 
 You wrote the long piece. It went out once, to your subscribers, and then it stopped working.
 
-This is a Claude Code plugin that makes the rest of the piece go to work. You give it a published URL. It does two things:
+This is a plugin for Claude Code and Codex that makes the rest of the piece go to work. You give it a published URL. It does two things:
 
 1. It reads the piece, splits it into sections and writes LinkedIn, X and Substack Notes posts **out of your own sentences**. There's no generic AI voice, and every claim traces back to something you wrote.
 2. It puts those posts on a **posting list**, a small dashboard that runs on your machine. You copy each post, tick it off when it's live and paste the link. Over time it shows you which sections you wrote and never posted.
@@ -11,7 +11,7 @@ This is a Claude Code plugin that makes the rest of the piece go to work. You gi
 
 ## Install
 
-You need [Claude Code](https://claude.com/claude-code) and Python 3.8 or newer, which is already on macOS and most Linux machines.
+You need [Claude Code](https://claude.com/claude-code) or [Codex](https://developers.openai.com/codex), and Python 3.8 or newer, which is already on macOS and most Linux machines.
 
 ```bash
 claude plugin marketplace add mrowean/long-form-distribution
@@ -28,6 +28,18 @@ Or, inside a Claude Code session:
 /plugin install long-form-distribution@long-form-distribution
 ```
 
+In Codex:
+
+```bash
+codex plugin marketplace add mrowean/long-form-distribution
+```
+
+```bash
+codex plugin add long-form-distribution@long-form-distribution
+```
+
+Then ask Codex to use the distribute skill on your published URL.
+
 ## Use
 
 ```
@@ -35,6 +47,8 @@ Or, inside a Claude Code session:
 ```
 
 Claude reads the piece and shows you its sections in a table, then waits while you pick which ones to post and where. Then it writes the posts, saves the issue and starts the dashboard at `127.0.0.1:8799`.
+
+**Paywalled posts** work too. If your agent has a browser tool connected to a browser where you're signed in, it can read the post there, after asking you first. Otherwise, paste the text from your editor or give it a file path. It never tries to get around a paywall.
 
 To open the dashboard later without distributing anything new:
 
@@ -66,7 +80,7 @@ The source file holds the passages of the issue that the sample posts are cut fr
 
 ## Where your data lives
 
-Everything stays on your computer. Claude fetches the article URL you give it; nothing else is sent anywhere. The server only listens on 127.0.0.1 and only answers requests made from its own page.
+Everything stays on your computer. Your agent fetches the article URL you give it; nothing else is sent anywhere. See [PRIVACY.md](PRIVACY.md). The server only listens on 127.0.0.1 and only answers requests made from its own page.
 
 ```
 ~/distribution-tracker/

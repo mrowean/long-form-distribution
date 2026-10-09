@@ -86,6 +86,7 @@ The skill's rules are in [`skills/distribute/SKILL.md`](https://github.com/mrowe
 - **Your sentences, fitted to the format.** The key line in each post is quoted or trimmed from the piece. Lead-ins and rewording are there to fit the platform, not to add claims.
 - **Nothing made up.** No numbers, quotes or results that aren't in the piece.
 - **Checked, not trusted.** A script compares every post with the piece. It shows which lines are quoted, which are reworded (next to the sentence they came from) and which are new lead-ins, and it flags any number, quote or name that isn't in the piece, plus any post over its platform's length limit.
+- **Caveats travel with the claim.** A caveat that made sense in the full piece can disappear when a section becomes a standalone post. The script warns when a post drops a qualifier ("only", "about", "as of"), a parenthetical, or a "But…" sentence that followed the line it used. On the dashboard, each post sits beside the paragraph it was cut from.
 - **A different opening move per platform**, so people who follow you in two places don't see the same post twice.
 - **A pass for the usual AI tells** before you see anything.
 - **You pick the sections.** You know which parts you're proud of. It shows you the table and waits for your choice.

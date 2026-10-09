@@ -77,6 +77,8 @@ python3 "${CLAUDE_SKILL_DIR}/scripts/check_posts.py" --source ~/distribution-tra
 
 It marks each line that isn't quoted from the piece as `adapted` (with the source sentence it came from) or `new` (lead-in or framing). Those are expected. It fails on two things: `NEW FACT`, a number, quoted phrase or name that isn't in the piece, and `TOO LONG`, a post over its platform's limit. Fix every failure and run it again. When you show the posts, list the adapted and new lines so the user can check that each one frames the point rather than changing it.
 
+It also warns `CAVEAT?` when a post drops something that narrowed the claim in the piece: a qualifier in the source sentence ("only", "about", "as of", "may"), a parenthetical, or the next sentence when that sentence is the caveat ("But…", "Caveat:"). A caveat that made sense in the full piece can disappear when a section becomes a standalone post. For each warning, either put the qualifier back or, if the post no longer makes the claim the caveat was for, tell the user why it's safe to leave out.
+
 Show the posts grouped by section, and let the user edit or cut any of them before saving.
 
 ## Step 5 — Save the issue
@@ -94,7 +96,8 @@ Write one JSON file to `~/distribution-tracker/issues/<slug>.json` (or `$LFD_HOM
   "sections": [{"id": "s1", "title": "…"}],
   "items": [
     {"id": "s1-li", "section": "s1", "platform": "linkedin", "format": "post",
-     "label": "Hook over the full section", "copy": "…the post text…"}
+     "label": "Hook over the full section", "copy": "…the post text…",
+     "source": "…the paragraph(s) of the piece the post was cut from, verbatim…"}
   ]
 }
 ```
@@ -102,6 +105,7 @@ Write one JSON file to `~/distribution-tracker/issues/<slug>.json` (or `$LFD_HOM
 - `platform` is one of `linkedin`, `x`, `substack`, `threads`, `bluesky`.
 - `format` is `post`, `thread` or `note`.
 - `label` is a few words the user will recognise in the checklist.
+- `source` is the full paragraph (or paragraphs) each post draws on, copied verbatim from the saved source text, caveats included. The dashboard shows it beside the post so the user can see what the post left out.
 - Every item `id` must be unique within the file.
 - Leave out `"sample"`.
 
@@ -123,7 +127,7 @@ python3 "${CLAUDE_SKILL_DIR}/dashboard/serve.py"
 
 Then tell the user to open **http://127.0.0.1:8799**. The new issue is at the top. On the dashboard:
 
-- **Click a post** to see its text, then use **Copy text** to grab it.
+- **Click a post** to see its text beside the passage it came from, then use **Copy text** to grab it.
 - **Tick it** once it's posted.
 - **Add link** saves the live URL. The server checks that a LinkedIn link is really from linkedin.com, and so on.
 - **Skip** marks a post you've decided not to use.

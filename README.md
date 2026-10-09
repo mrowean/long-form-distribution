@@ -66,7 +66,7 @@ The source file holds the passages of the issue that the sample posts are cut fr
 
 ## Where your data lives
 
-Everything stays on your computer. The server only listens on 127.0.0.1 and only answers requests made from its own page.
+Everything stays on your computer. Claude fetches the article URL you give it; nothing else is sent anywhere. The server only listens on 127.0.0.1 and only answers requests made from its own page.
 
 ```
 ~/distribution-tracker/

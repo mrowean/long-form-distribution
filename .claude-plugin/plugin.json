@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "description": "Turn a published newsletter issue or essay into social posts built from your own sentences, and track which ones went live on a local dashboard.",
   "author": { "name": "Matthew Rowean" },
+  "homepage": "https://github.com/mrowean/long-form-distribution",
+  "repository": "https://github.com/mrowean/long-form-distribution",
   "license": "MIT",
   "keywords": ["newsletter", "distribution", "linkedin", "substack", "writing"]
 }

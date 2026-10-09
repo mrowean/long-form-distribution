@@ -1,4 +1,4 @@
-![long-form-distribution: one long piece in, a posting plan out](docs/banner.png)
+![long-form-distribution: one long piece in, a posting plan out](https://raw.githubusercontent.com/mrowean/long-form-distribution/main/docs/banner.png)
 
 You wrote the long piece. It went out once, to your subscribers, and then it stopped working.
 
@@ -7,7 +7,7 @@ This is a Claude Code plugin that makes the rest of the piece go to work. You gi
 1. It reads the piece, splits it into sections and writes LinkedIn, X and Substack Notes posts **out of your own sentences**. There's no generic AI voice, and every claim traces back to something you wrote.
 2. It puts those posts on a **posting list**, a small dashboard that runs on your machine. You copy each post, tick it off when it's live and paste the link. Over time it shows you which sections you wrote and never posted.
 
-![The posting list](docs/screenshot.png)
+![The posting list](https://raw.githubusercontent.com/mrowean/long-form-distribution/main/docs/screenshot.png)
 
 ## Install
 

@@ -229,7 +229,12 @@ def main():
     ap.add_argument("--demo", action="store_true", help="show the bundled sample issue; write nothing")
     a = ap.parse_args()
     store = Store(SAMPLE if a.demo else HOME, demo=a.demo)
-    srv = ThreadingHTTPServer(("127.0.0.1", a.port), make_handler(store))
+    try:
+        srv = ThreadingHTTPServer(("127.0.0.1", a.port), make_handler(store))
+    except OSError:
+        print(f"Port {a.port} is already in use. If the dashboard is already running, open http://127.0.0.1:{a.port}")
+        print("Otherwise start it on another port with --port.")
+        sys.exit(3)
     print(f"Distribution dashboard: http://127.0.0.1:{a.port}")
     print(f"Data: {'bundled sample (demo, nothing saved)' if a.demo else store.root}")
     print("Ctrl-C to stop.")

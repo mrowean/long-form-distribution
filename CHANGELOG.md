@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1 — 2026-10-09
+
+- **No more `curl` in the skill.** Step 6 used `curl` against 127.0.0.1 to see whether the dashboard was already running. Security scanners read that as sending data to a remote endpoint. The skill now just starts the server, and `serve.py` exits with a clear message (code 3) when the port is already in use.
+- Codex manifest: long description, icon and screenshot.
+- Added Dependabot for the pinned GitHub Actions, and a `.codexignore`.
+
 ## 0.2.0 — 2026-10-09
 
 - **Caveats travel with the claim.** `check_posts.py` warns `CAVEAT?` when a post drops a qualifier, a parenthetical or a following "But…" sentence from its source. Each saved post carries a `source` field, and the dashboard shows it beside the post.

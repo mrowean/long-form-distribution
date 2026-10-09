@@ -125,17 +125,13 @@ If a file for this slug already exists, the issue has been distributed before. A
 
 ## Step 6 — Open the dashboard
 
-Check whether it's already running:
-
-```bash
-curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8799/api/state
-```
-
-If that doesn't print `200`, start it in the background:
+Start it in the background:
 
 ```bash
 python3 "${CLAUDE_SKILL_DIR}/dashboard/serve.py"
 ```
+
+If it prints that port 8799 is already in use, the dashboard is most likely already running from an earlier session: it reads the issue files on every request, so the new issue is already there.
 
 Then tell the user to open **http://127.0.0.1:8799**. The new issue is at the top. On the dashboard:
 
@@ -146,7 +142,7 @@ Then tell the user to open **http://127.0.0.1:8799**. The new issue is at the to
 - **Coverage** shows which sections have never gone out. Those are posts that are already written.
 - **Export CSV** downloads every logged link.
 
-If port 8799 is taken, start the server with `--port <another>` and give the user that address.
+If the user opens the address and sees something other than the dashboard, another program has the port: start the server with `--port <another>` and give the user that address.
 
 ## Voice (optional, once)
 

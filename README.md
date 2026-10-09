@@ -34,7 +34,7 @@ Or, inside a Claude Code session:
 /long-form-distribution:distribute https://yourname.substack.com/p/your-latest-issue
 ```
 
-Claude reads the piece and shows you its sections in a table, then waits while you pick which ones to post and where. Then it writes the posts, saves the issue and starts the dashboard at **http://127.0.0.1:8799**.
+Claude reads the piece and shows you its sections in a table, then waits while you pick which ones to post and where. Then it writes the posts, saves the issue and starts the dashboard at `http://127.0.0.1:8799`.
 
 To open the dashboard later without distributing anything new:
 
@@ -54,7 +54,7 @@ git clone https://github.com/mrowean/long-form-distribution
 python3 long-form-distribution/skills/distribute/dashboard/serve.py --demo
 ```
 
-Open http://127.0.0.1:8799. The samples are real issues: SHORTCUTS #04, #05 and #06, the one where I wrote about this tool. Every post in them is cut from that issue's own sentences. In demo mode nothing is saved. You can also open `skills/distribute/dashboard/index.html` straight from disk. It shows the same samples, and your ticks stay in that browser.
+Open `http://127.0.0.1:8799`. The samples are real issues: SHORTCUTS #04, #05 and #06, the one where I wrote about this tool. Every post in them is cut from that issue's own sentences. In demo mode nothing is saved. You can also open `skills/distribute/dashboard/index.html` straight from disk. It shows the same samples, and your ticks stay in that browser.
 
 To see the quote check on the same sample:
 
@@ -81,7 +81,7 @@ Set `LFD_HOME` to keep it somewhere else, e.g. a synced folder. The files are pl
 
 ## How the posts get written
 
-The skill's rules are in [`skills/distribute/SKILL.md`](skills/distribute/SKILL.md). The short version:
+The skill's rules are in [`skills/distribute/SKILL.md`](https://github.com/mrowean/long-form-distribution/blob/main/skills/distribute/SKILL.md). The short version:
 
 - **Your sentences, fitted to the format.** The key line in each post is quoted or trimmed from the piece. Lead-ins and rewording are there to fit the platform, not to add claims.
 - **Nothing made up.** No numbers, quotes or results that aren't in the piece.

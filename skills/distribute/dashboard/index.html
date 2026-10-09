@@ -107,7 +107,7 @@ section.band{background:var(--band);padding:56px 0 72px}
 .railbar i.skip{background:var(--rule)}
 
 /* queue */
-.qwrap{display:grid;grid-template-columns:minmax(0,1fr) 168px;gap:24px;margin-top:24px;border-top:1px solid var(--rule);padding-top:24px}
+.qwrap{display:grid;grid-template-columns:minmax(0,1fr) 72px;gap:20px;margin-top:24px;border-top:1px solid var(--rule);padding-top:24px}
 @media(max-width:760px){.qwrap{grid-template-columns:1fr}.prog{display:none}}
 .qhead{display:flex;align-items:baseline;gap:14px;margin-bottom:14px;flex-wrap:wrap}
 .qhead h3{font:600 var(--type-title)/1.15 var(--serif);margin:0;letter-spacing:-.01em}
@@ -143,12 +143,12 @@ section.band{background:var(--band);padding:56px 0 72px}
 .logbox input:focus{outline:none;border-color:var(--ink-soft)}
 .logbox .msg{font:400 var(--type-label)/1.4 var(--mono);color:var(--ink-faint);flex-basis:100%}
 .logbox.err .msg{color:var(--red)}
-.prog{position:sticky;top:56px;align-self:start}
+.prog{position:sticky;top:56px;align-self:start;justify-self:end;text-align:right}
 .prog .n{font:600 var(--type-score)/.9 var(--serif);letter-spacing:-.02em}
 .prog .of{font:400 var(--type-label)/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-top:6px}
-.prog .bar{margin-top:16px;height:200px;width:10px;background:var(--field);border-radius:5px;position:relative;overflow:hidden}
+.prog .bar{margin:16px 0 0 auto;height:200px;width:10px;background:var(--field);border-radius:5px;position:relative;overflow:hidden}
 .prog .bar i{position:absolute;left:0;right:0}
-.prog .key{margin-top:14px;font:400 var(--type-label)/1.8 var(--mono);color:var(--ink-faint)}
+.prog .key{margin-top:14px;white-space:nowrap;font:400 var(--type-label)/1.8 var(--mono);color:var(--ink-faint)}
 .prog .key s{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:middle}
 
 /* 02 · coverage */
@@ -382,7 +382,7 @@ function renderProg(d, S) {
   });
   p.appendChild(bar);
   var keyb = el('div', 'key');
-  [['var(--green)', 'with link'], ['var(--ink)', 'ticked'], ['var(--rule)', 'skipped']].forEach(function (s) {
+  [['var(--green)', 'linked'], ['var(--ink)', 'ticked'], ['var(--rule)', 'skipped']].forEach(function (s) {
     var line = el('div'), sw = el('s'); sw.style.background = s[0]; line.appendChild(sw); line.appendChild(document.createTextNode(s[1])); keyb.appendChild(line);
   });
   p.appendChild(keyb);

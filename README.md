@@ -1,5 +1,7 @@
 ![long-form-distribution: one long piece in, a posting plan out](https://raw.githubusercontent.com/mrowean/long-form-distribution/main/docs/banner.png)
 
+[![HOL Guard](https://img.shields.io/endpoint?url=https%3A%2F%2Fhol.org%2Fapi%2Fregistry%2Fbadges%2Fplugin%3Fslug%3Dmrowean%252Flong-form-distribution%26metric%3Dtrust)](https://hol.org/registry/plugins/mrowean%2Flong-form-distribution)
+
 You wrote the long piece. It went out once, to your subscribers, and then it stopped working.
 
 This is a plugin for Claude Code and Codex that makes the rest of the piece go to work. You give it a published URL. It does two things:

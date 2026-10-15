@@ -1,6 +1,6 @@
 ![long-form-distribution: one long piece in, a posting plan out](https://raw.githubusercontent.com/mrowean/long-form-distribution/main/docs/banner.png)
 
-[![HOL Guard](https://img.shields.io/endpoint?url=https%3A%2F%2Fhol.org%2Fapi%2Fregistry%2Fbadges%2Fplugin%3Fslug%3Dmrowean%252Flong-form-distribution%26metric%3Dtrust)](https://hol.org/registry/plugins/mrowean%2Flong-form-distribution)
+[![HOL Guard](https://img.shields.io/endpoint?url=https%3A%2F%2Fhol.org%2Fapi%2Fregistry%2Fbadges%2Fplugin%3Fslug%3Dmatthew-rowean%252Flong-form-distribution%26metric%3Dtrust)](https://hol.org/registry/plugins/matthew-rowean%2Flong-form-distribution)
 
 You wrote the long piece. It went out once, to your subscribers, and then it stopped working.
 

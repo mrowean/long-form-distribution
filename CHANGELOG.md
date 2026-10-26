@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2 — 2026-10-26
+
+- **The dashboard's code is now its own file.** `index.html` carried its page logic and the sample issues inline, and the Claude plugin directory's scanner flagged it as a file the plugin could run. The logic now lives in `dashboard/app.js` and the sample data in `dashboard/sample-data.js`; `index.html` is markup and styles only. `serve.py` serves the two new files. Nothing changes in how the dashboard looks or works.
+
 ## 0.2.1 — 2026-10-09
 
 - **No more `curl` in the skill.** Step 6 used `curl` against 127.0.0.1 to see whether the dashboard was already running. Security scanners read that as sending data to a remote endpoint. The skill now just starts the server, and `serve.py` exits with a clear message (code 3) when the port is already in use.

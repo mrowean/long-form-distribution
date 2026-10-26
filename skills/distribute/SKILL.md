@@ -10,9 +10,9 @@ One published piece → a set of posts for LinkedIn, X, Substack Notes (and Thre
 
 Everything stays on the user's machine. The dashboard is a small Python server (standard library only) bound to 127.0.0.1. Issue files and the posting log live in `~/distribution-tracker/` unless `LFD_HOME` says otherwise.
 
-Arguments: `$ARGUMENTS` (if your agent doesn't fill this in, use the URL or word the user gave).
+Arguments: the URL or word the user gave with the request.
 
-`${CLAUDE_SKILL_DIR}` below means the folder this SKILL.md is in. If your agent doesn't set it, use that folder's absolute path.
+`<skill-dir>` below means the folder this SKILL.md is in. Replace it with that folder's absolute path.
 
 - If the argument is `dashboard` (or the user only wants to see their list), skip to **Step 6**.
 - If there is no URL, ask for the published link. Don't work from a draft that isn't live: the posts link back to it.
@@ -20,11 +20,11 @@ Arguments: `$ARGUMENTS` (if your agent doesn't fill this in, use the URL or word
 
 ## Step 1 — Read the piece
 
-Fetch the URL with your web-fetch tool (WebFetch in Claude Code) and ask for the full article text: the title, the publish date, the cover image URL if there is one, and every section heading with the body under it, verbatim. Ask it to leave out navigation, subscribe boxes, footers and comments.
+Fetch the URL with your web-fetch tool and ask for the full article text: the title, the publish date, the cover image URL if there is one, and every section heading with the body under it, verbatim. Ask it to leave out navigation, subscribe boxes, footers and comments.
 
 **If the piece is paywalled or cut short.** Signs include text that ends mid-piece, a "Keep reading with a free trial" or "This post is for paid subscribers" box, or sections the intro promises that never appear. Tell the user the last section you received, then offer whichever of these routes you can use:
 
-- **Read it in their signed-in browser.** If you have a browser tool connected to the user's own browser (for example Claude in Chrome), ask first: "Can I open the post in your browser, where you're signed in?" On a yes, open the post URL, read the full text from the page and close the tab. Don't click anything except to expand the text, change no settings, and don't copy cookies or session data.
+- **Read it in their signed-in browser.** If you have a browser tool connected to the user's own browser, ask first: "Can I open the post in your browser, where you're signed in?" On a yes, open the post URL, read the full text from the page and close the tab. Don't click anything except to expand the text, change no settings, and don't copy cookies or session data.
 - **Paste it from their editor.** Open the post in the platform's editor, select all, copy, and paste it into the chat.
 - **Give a file path.** Save the post as `.md`, `.txt` or `.html` and give you the path.
 - **Use the platform's export.** Substack: Settings → Exports gives a zip with every post as HTML, paid posts included.
@@ -84,7 +84,7 @@ If the user has a voice file (see **Voice**), read it before writing and follow 
 **Check the posts before showing them.** Write them to a scratch file, separated by lines of `---` (or as the `items` of an issue file), and run:
 
 ```bash
-python3 "${CLAUDE_SKILL_DIR}/scripts/check_posts.py" --source ~/distribution-tracker/sources/<slug>.txt --posts <file>
+python3 "<skill-dir>/scripts/check_posts.py" --source ~/distribution-tracker/sources/<slug>.txt --posts <file>
 ```
 
 It marks each line that isn't quoted from the piece as `adapted` (with the source sentence it came from) or `new` (lead-in or framing). Those are expected. It fails on two things: `NEW FACT`, a number, quoted phrase or name that isn't in the piece, and `TOO LONG`, a post over its platform's limit. Fix every failure and run it again. When you show the posts, list the adapted and new lines so the user can check that each one frames the point rather than changing it.
@@ -95,7 +95,7 @@ Show the posts grouped by section, and let the user edit or cut any of them befo
 
 ## Step 5 — Save the issue
 
-Write one JSON file to `~/distribution-tracker/issues/<slug>.json` (or `$LFD_HOME/issues/`). Make the slug lowercase from the title: letters, digits and hyphens only, 60 characters max. Use the same shape as `${CLAUDE_SKILL_DIR}/sample/issues/sample-shortcuts-06.json`:
+Write one JSON file to `~/distribution-tracker/issues/<slug>.json` (or `$LFD_HOME/issues/`). Make the slug lowercase from the title: letters, digits and hyphens only, 60 characters max. Use the same shape as `<skill-dir>/sample/issues/sample-shortcuts-06.json`:
 
 ```json
 {
@@ -128,7 +128,7 @@ If a file for this slug already exists, the issue has been distributed before. A
 Start it in the background:
 
 ```bash
-python3 "${CLAUDE_SKILL_DIR}/dashboard/serve.py"
+python3 "<skill-dir>/dashboard/serve.py"
 ```
 
 If it prints that port 8799 is already in use, the dashboard is most likely already running from an earlier session: it reads the issue files on every request, so the new issue is already there.

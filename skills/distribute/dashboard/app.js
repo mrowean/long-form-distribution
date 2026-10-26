@@ -53,13 +53,13 @@ function send(path, body) {
   return fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
     .then(function (r) { return r.json(); })
     .then(function (j) { if (j.ok) LOG.push(j.row); return j; })
-    .catch(function () { return { ok: false, error: 'The server stopped. Restart it with /long-form-distribution:distribute dashboard.' }; });
+    .catch(function () { return { ok: false, error: 'The server stopped. Ask your agent to start the distribution dashboard again.' }; });
 }
 
 /* ── 01 · issues ─────────────────────────────────────────── */
 function renderIssues() {
   var host = $('issues'), S = state(); clear(host);
-  if (!ISSUES.length) { host.appendChild(el('div', 'empty', 'No issues yet. Run /long-form-distribution:distribute <your published URL> in Claude Code and the issue appears here.')); return; }
+  if (!ISSUES.length) { host.appendChild(el('div', 'empty', 'No issues yet. Give your agent a published URL and ask it to distribute the piece; the issue appears here.')); return; }
   ISSUES.forEach(function (d) {
     var c = counts(d, S), live = c.done + c.logged, finished = c.total && (live + c.skip) === c.total;
     var b = el('button', 'iss' + (finished ? ' done' : '')); b.type = 'button';
@@ -265,9 +265,7 @@ function setMode(mode, home) {
     bn.appendChild(document.createTextNode(mode === 'demo'
       ? 'Tick, skip and paste links to see how it works; nothing is saved. '
       : 'Ticks stay in this browser. '));
-    bn.appendChild(document.createTextNode('To track your own writing, install the plugin and run '));
-    bn.appendChild(el('code', null, '/long-form-distribution:distribute <your published URL>'));
-    bn.appendChild(document.createTextNode('.'));
+    bn.appendChild(document.createTextNode('To track your own writing, install the plugin, give your agent a published URL and ask it to distribute the piece.'));
   }
   if (mode === 'local') $('csv').addEventListener('click', function (e) { e.preventDefault(); var a = el('a'); a.href = csvLocal(); a.download = 'posted.csv'; a.click(); });
   $('railR').textContent = fdate(new Date().toISOString().slice(0, 10));

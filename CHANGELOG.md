@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.3 — 2026-10-26
+
+- **Provider-neutral wording.** OpenAI's plugin directory asks skills not to name one vendor's tools. `SKILL.md` now says `<skill-dir>` instead of `${CLAUDE_SKILL_DIR}` and drops `$ARGUMENTS`, "WebFetch in Claude Code" and "Claude in Chrome". The dashboard's hints say to ask your agent instead of quoting a Claude Code slash command. Nothing changes in what the skill does.
+- Codex manifest: `shortDescription` is now "Social posts from your essays", inside the directory's 30-character limit.
+
 ## 0.2.2 — 2026-10-26
 
 - **The dashboard's code is now its own file.** `index.html` carried its page logic and the sample issues inline, and the Claude plugin directory's scanner flagged it as a file the plugin could run. The logic now lives in `dashboard/app.js` and the sample data in `dashboard/sample-data.js`; `index.html` is markup and styles only. `serve.py` serves the two new files. Nothing changes in how the dashboard looks or works.

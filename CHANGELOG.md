@@ -5,6 +5,8 @@
 - **Tested in other agents.** The README has a compatibility table. Codex CLI 0.153.4 and Grok Build 1.0.46 each ran the sample issue from start to finish. Cursor and Gemini CLI are marked untested; the table says why for Gemini CLI.
 - **Sandboxed agents get the right message.** `serve.py` used to report every failed port as "already in use". When an agent's sandbox blocks local servers, it now says so, exits with code 4 and prints the command to run in your own terminal. Step 6 of the skill tells the agent to pass that command to you and not to work around the sandbox.
 - **The saved link is the one you gave.** In the Grok Build test, the saved issue had a different URL from the one given. Step 5 now says to use the published URL exactly as given.
+- **Closing an issue on the dashboard works.** Clicking the open issue's card again hid the post list in the page's state but left it on screen, and its rows stopped responding. The list now disappears as it should.
+- **README.** A demo GIF at the top, a one-line install for each agent, and a one-line command that clones the repo and starts the dashboard on the sample issues.
 
 ## 0.2.3 — 2026-10-26
 

@@ -9,44 +9,39 @@ This is a plugin for Claude Code and Codex that makes the rest of the piece go t
 1. It reads the piece, splits it into sections and writes LinkedIn, X and Substack Notes posts **out of your own sentences**. There's no generic AI voice, and every claim traces back to something you wrote.
 2. It puts those posts on a **posting list**, a small dashboard that runs on your machine. You copy each post, tick it off when it's live and paste the link. Over time it shows you which sections you wrote and never posted.
 
-![The posting list](https://raw.githubusercontent.com/mrowean/long-form-distribution/main/docs/screenshot.png)
+![The posting list: open a post beside the passage it came from, tick it, paste the live link](https://raw.githubusercontent.com/mrowean/long-form-distribution/main/docs/demo.gif)
+
+**Try the dashboard in 10 seconds.** Nothing to install beyond Python 3.8+, and demo mode saves nothing:
+
+```bash
+git clone https://github.com/mrowean/long-form-distribution && python3 long-form-distribution/skills/distribute/dashboard/serve.py --demo
+```
+
+Then open `127.0.0.1:8799`.
 
 ## Install
 
-You need [Claude Code](https://claude.com/claude-code) or [Codex](https://developers.openai.com/codex), and Python 3.8 or newer, which is already on macOS and most Linux machines.
+One line per agent. You need Python 3.8 or newer, which is already on macOS and most Linux machines.
+
+**[Claude Code](https://claude.com/claude-code)**
 
 ```bash
-claude plugin marketplace add mrowean/long-form-distribution
+claude plugin marketplace add mrowean/long-form-distribution && claude plugin install long-form-distribution@long-form-distribution
 ```
+
+**[Codex](https://developers.openai.com/codex)**
 
 ```bash
-claude plugin install long-form-distribution@long-form-distribution
+codex plugin marketplace add mrowean/long-form-distribution && codex plugin add long-form-distribution@long-form-distribution
 ```
 
-Or, inside a Claude Code session:
-
-```
-/plugin marketplace add mrowean/long-form-distribution
-/plugin install long-form-distribution@long-form-distribution
-```
-
-In Codex:
+**Grok Build**, which reads Claude Code plugins directly:
 
 ```bash
-codex plugin marketplace add mrowean/long-form-distribution
+git clone https://github.com/mrowean/long-form-distribution && grok plugin install ./long-form-distribution --trust
 ```
 
-```bash
-codex plugin add long-form-distribution@long-form-distribution
-```
-
-Then ask Codex to use the distribute skill on your published URL.
-
-In Grok Build, which reads Claude Code plugins directly:
-
-```bash
-grok plugin install /path/to/long-form-distribution --trust
-```
+Inside a Claude Code session you can also use `/plugin marketplace add mrowean/long-form-distribution`, then `/plugin install long-form-distribution@long-form-distribution`. In Codex, ask it to use the distribute skill on your published URL.
 
 ### Which agents it has been tested in
 
@@ -85,17 +80,9 @@ To open the dashboard later without distributing anything new:
 
 ## Try it first
 
-You can see the dashboard with three sample issues before you install anything:
+The demo at the top serves three sample issues: SHORTCUTS #04, #05 and #06, the one where I wrote about this tool. Every post in them is cut from that issue's own sentences. You can also open `skills/distribute/dashboard/index.html` straight from disk. It shows the same samples, and your ticks stay in that browser.
 
-```bash
-git clone https://github.com/mrowean/long-form-distribution
-```
-
-```bash
-python3 long-form-distribution/skills/distribute/dashboard/serve.py --demo
-```
-
-Open `127.0.0.1:8799`. The samples are real issues: SHORTCUTS #04, #05 and #06, the one where I wrote about this tool. Every post in them is cut from that issue's own sentences. In demo mode nothing is saved. You can also open `skills/distribute/dashboard/index.html` straight from disk. It shows the same samples, and your ticks stay in that browser.
+![The posting list](https://raw.githubusercontent.com/mrowean/long-form-distribution/main/docs/screenshot.png)
 
 To see the quote check on the same sample:
 

@@ -58,11 +58,12 @@ The skill is a plain Agent Skills folder: a `SKILL.md` plus Python scripts, with
 | Codex CLI | 0.153.4 | 2026-10-28 | ✓ | ✓ | ✓ 4/4 | Run it in your own terminal¹ |
 | Grok Build | 1.0.46 | 2026-10-28 | ✓ | ✓² | ✓ 4/4 | ✓ |
 | Cursor | | untested | | | | |
-| Gemini CLI | | untested | | | | |
+| Gemini CLI | 0.66.0 | untested⁴ | | | | |
 
 ¹ Codex's default `workspace-write` sandbox doesn't allow local servers. The skill hands you the command to start the dashboard yourself. Your issue is already saved, so it shows up.
 ² In the test run, Grok put a different link in the saved issue than the URL it was given. 0.2.4 tells the agent to use the given URL exactly. That fix hasn't been retested yet.
 ³ The plugin is built and used in Claude Code, but this round only tested the other agents.
+⁴ Installed on 2026-10-28, but Google sign-in is no longer offered to personal accounts, so it needs a Gemini API key. Not run yet.
 
 Found a problem in another agent? [Open an issue](https://github.com/mrowean/long-form-distribution/issues) with the agent and its version.
 

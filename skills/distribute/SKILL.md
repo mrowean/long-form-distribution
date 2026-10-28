@@ -114,6 +114,7 @@ Write one JSON file to `~/distribution-tracker/issues/<slug>.json` (or `$LFD_HOM
 }
 ```
 
+- `url` is the published URL the user gave, exactly as given. Never put another address there, even one you know for the same author or publication.
 - `platform` is one of `linkedin`, `x`, `substack`, `threads`, `bluesky`.
 - `format` is `post`, `thread` or `note`.
 - `label` is a few words the user will recognise in the checklist.
@@ -132,6 +133,8 @@ python3 "<skill-dir>/dashboard/serve.py"
 ```
 
 If it prints that port 8799 is already in use, the dashboard is most likely already running from an earlier session: it reads the issue files on every request, so the new issue is already there.
+
+If it prints `Couldn't open port` instead, your sandbox doesn't allow local servers. Don't retry or work around it. Give the user the command it printed to run in their own terminal. The issue file is already saved, so the dashboard will show it.
 
 Then tell the user to open **http://127.0.0.1:8799**. The new issue is at the top. On the dashboard:
 

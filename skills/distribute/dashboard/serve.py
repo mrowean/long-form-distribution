@@ -21,6 +21,7 @@ The page reads /api/state and writes through three routes:
 """
 import argparse
 import csv
+import errno
 import io
 import json
 import os
@@ -233,10 +234,16 @@ def main():
     store = Store(SAMPLE if a.demo else HOME, demo=a.demo)
     try:
         srv = ThreadingHTTPServer(("127.0.0.1", a.port), make_handler(store))
-    except OSError:
-        print(f"Port {a.port} is already in use. If the dashboard is already running, open http://127.0.0.1:{a.port}")
-        print("Otherwise start it on another port with --port.")
-        sys.exit(3)
+    except OSError as e:
+        if e.errno == errno.EADDRINUSE:
+            print(f"Port {a.port} is already in use. If the dashboard is already running, open http://127.0.0.1:{a.port}")
+            print("Otherwise start it on another port with --port.")
+            sys.exit(3)
+        # Anything else is usually an agent sandbox that blocks local servers.
+        print(f"Couldn't open port {a.port}: {e.strerror or e}.")
+        print("If an agent ran this, its sandbox may not allow local servers. Run this command in your own terminal:")
+        print(f'    python3 "{Path(__file__).resolve()}"' + (f" --port {a.port}" if a.port != 8799 else ""))
+        sys.exit(4)
     print(f"Distribution dashboard: http://127.0.0.1:{a.port}")
     print(f"Data: {'bundled sample (demo, nothing saved)' if a.demo else store.root}")
     print("Ctrl-C to stop.")

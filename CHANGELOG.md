@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.4 — 2026-10-28
+
+- **Tested in other agents.** The README has a compatibility table. Codex CLI 0.153.4 and Grok Build 1.0.46 each ran the sample issue from start to finish. Cursor and Gemini CLI are marked untested.
+- **Sandboxed agents get the right message.** `serve.py` used to report every failed port as "already in use". When an agent's sandbox blocks local servers, it now says so, exits with code 4 and prints the command to run in your own terminal. Step 6 of the skill tells the agent to pass that command to you and not to work around the sandbox.
+- **The saved link is the one you gave.** In the Grok Build test, the saved issue had a different URL from the one given. Step 5 now says to use the published URL exactly as given.
+
 ## 0.2.3 — 2026-10-26
 
 - **Provider-neutral wording.** OpenAI's plugin directory asks skills not to name one vendor's tools. `SKILL.md` now says `<skill-dir>` instead of `${CLAUDE_SKILL_DIR}` and drops `$ARGUMENTS`, "WebFetch in Claude Code" and "Claude in Chrome". The dashboard's hints say to ask your agent instead of quoting a Claude Code slash command. Nothing changes in what the skill does.

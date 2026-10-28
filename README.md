@@ -42,6 +42,30 @@ codex plugin add long-form-distribution@long-form-distribution
 
 Then ask Codex to use the distribute skill on your published URL.
 
+In Grok Build, which reads Claude Code plugins directly:
+
+```bash
+grok plugin install /path/to/long-form-distribution --trust
+```
+
+### Which agents it has been tested in
+
+The skill is a plain Agent Skills folder: a `SKILL.md` plus Python scripts, with no hooks or slash commands. Other agents that read skills may work too, but they're marked untested until someone runs them. Each tested agent ran the bundled SHORTCUTS #04 sample from start to finish.
+
+| Agent | Version | Tested | Finds the skill | Writes the posts | Quote check | Dashboard |
+|---|---|---|---|---|---|---|
+| Claude Code | | not in this round³ | | | | |
+| Codex CLI | 0.153.4 | 2026-10-28 | ✓ | ✓ | ✓ 4/4 | Run it in your own terminal¹ |
+| Grok Build | 1.0.46 | 2026-10-28 | ✓ | ✓² | ✓ 4/4 | ✓ |
+| Cursor | | untested | | | | |
+| Gemini CLI | | untested | | | | |
+
+¹ Codex's default `workspace-write` sandbox doesn't allow local servers. The skill hands you the command to start the dashboard yourself. Your issue is already saved, so it shows up.
+² In the test run, Grok put a different link in the saved issue than the URL it was given. 0.2.4 tells the agent to use the given URL exactly. That fix hasn't been retested yet.
+³ The plugin is built and used in Claude Code, but this round only tested the other agents.
+
+Found a problem in another agent? [Open an issue](https://github.com/mrowean/long-form-distribution/issues) with the agent and its version.
+
 ## Use
 
 ```

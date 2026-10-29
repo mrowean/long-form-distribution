@@ -4,7 +4,7 @@
 
 You wrote the long piece. It went out once, to your subscribers, and then it stopped working.
 
-This is a plugin for Claude Code and Codex that makes the rest of the piece go to work. You give it a published URL. It does two things:
+This is a plugin for Claude Code, Codex and Grok Build that makes the rest of the piece go to work. You give it a published URL. It does two things:
 
 1. It reads the piece, splits it into sections and writes LinkedIn, X and Substack Notes posts **out of your own sentences**. There's no generic AI voice, and every claim traces back to something you wrote.
 2. It puts those posts on a **posting list**, a small dashboard that runs on your machine. You copy each post, tick it off when it's live and paste the link. Over time it shows you which sections you wrote and never posted.

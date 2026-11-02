@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.5 — 2026-11-02
+
+- **No bundled data file in the dashboard.** The Claude plugin directory's scanner flagged `dashboard/sample-data.js`, a copy of the sample issues kept so `index.html` could show them when opened straight from disk. It is gone. Opened from disk, the dashboard now says the server isn't running and gives the command to start it. `python3 serve.py --demo` still shows the same three sample issues, read from `sample/issues/`.
+
 ## 0.2.4 — 2026-10-28
 
 - **Tested in other agents.** The README has a compatibility table. Codex CLI 0.153.4 and Grok Build 1.0.46 each ran the sample issue from start to finish. Cursor and Gemini CLI are marked untested; the table says why for Gemini CLI.
